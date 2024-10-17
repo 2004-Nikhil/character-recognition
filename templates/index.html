@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Handwritten Digit Recognition</title>
+    <title>Handwritten Character Recognition</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
@@ -12,8 +12,7 @@
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:text-center">
                 <h2 class="text-base font-semibold leading-7 text-indigo-600">Machine Learning</h2>
-                <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Handwritten Digit Recognition</p>
-                <p class="mt-6 text-lg leading-8 text-gray-600">Trained on MNIST Dataset</p>
+                <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Handwritten Character Recognition</p>
             </div>
         </div>
     </div>
@@ -27,9 +26,8 @@
                     </div>
                 </div>
                 <div class="flex flex-col justify-center items-center">
-                    <!-- Add div to contain the bar chart -->
                     <div class="mt-8">
-                        <canvas id="barChart" width="400" height="400"></canvas>
+                        <canvas id="radarChart" width="400" height="400"></canvas>
                     </div>
                 </div>
             </div>

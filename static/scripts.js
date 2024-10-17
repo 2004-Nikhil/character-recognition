@@ -1,8 +1,8 @@
+var radarChart;
 var canvas, ctx;
 var mouseX, mouseY, mouseDown = 0;
 var touchX, touchY;
-var barChart;
-var confidencePercentages = Array(10).fill(0);
+var confidencePercentages = Array(47).fill(0);
 var debounceTimeout;
 
 function init() {
@@ -97,7 +97,7 @@ function predict() {
     })
     .then(response => response.json())
     .then(data => {
-        updateChart(data.results);
+        updateRadarChart(data.results);
     })
     .catch(error => {
         console.error('Error:', error);
@@ -110,69 +110,50 @@ document.getElementById('clear_button').addEventListener("click",
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "black";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+        updateRadarChart(Array(47).fill(0));
     });
 
 // Output
-function updateChart(confidenceArray) {
-    if (!barChart) {
+function updateRadarChart(confidenceArray) {
+    var labels = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','d','e','f','g','h','n','q','r','t'];
+
+    if (!radarChart) {
         var chartData = {
-            labels: ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','d','e','f','g','h','n','q','r','t'],
+            labels: labels,
             datasets: [{
                 label: 'Confidence Percentage',
-                backgroundColor: confidenceArray.map((confidence, index) => {
-                    return generateColor(index);
-                }),
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1,
+                pointBackgroundColor: 'rgba(54, 162, 235, 1)',
                 data: confidenceArray.map(confidence => confidence * 100)
             }]
         };
 
         var chartOptions = {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        min: 0,
-                        max: 100,
-                        callback: function(value) {
-                            return value + '%'; 
-                        }
+            scale: {
+                ticks: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 100,
+                    callback: function(value) {
+                        return value + '%';
                     }
-                }]
+                }
             }
         };
-        barChart = new Chart(document.getElementById('barChart'), {
-            type: 'bar',
+
+        radarChart = new Chart(document.getElementById('radarChart'), {
+            type: 'radar',
             data: chartData,
             options: chartOptions
         });
     } else {
-        barChart.data.datasets[0].data = confidenceArray.map(confidence => confidence * 100);
-        barChart.data.datasets[0].backgroundColor = confidenceArray.map((confidence, index) => {
-            return generateColor(index);
-        });
-        barChart.update();
+        radarChart.data.datasets[0].data = confidenceArray.map(confidence => confidence * 100);
+        radarChart.update();
     }
-}
-
-function generateColor(number) {
-    var colors = [
-        'rgba(255, 99, 132, 0.5)',   // Red
-        'rgba(54, 162, 235, 0.5)',   // Blue
-        'rgba(255, 206, 86, 0.5)',   // Yellow
-        'rgba(75, 192, 192, 0.5)',   // Green
-        'rgba(153, 102, 255, 0.5)',  // Purple
-        'rgba(255, 159, 64, 0.5)',   // Orange
-        'rgba(255, 99, 132, 0.5)',   // Red
-        'rgba(54, 162, 235, 0.5)',   // Blue
-        'rgba(255, 206, 86, 0.5)',   // Yellow
-        'rgba(75, 192, 192, 0.5)'    // Green
-    ];
-    return colors[number % colors.length];
 }
 
 document.addEventListener("DOMContentLoaded", function() {
     init();
-    updateChart(confidencePercentages);
+    updateRadarChart(confidencePercentages);
 });
