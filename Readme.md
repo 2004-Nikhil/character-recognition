@@ -47,7 +47,6 @@ This project is a web application for recognizing handwritten characters using a
 
 1. Open your web browser and navigate to `http://127.0.0.1:5000/`.
 2. Use the canvas to draw a character.
-3. Click the "Predict" button to get the prediction results.
 
 ## Project Structure
 
@@ -60,8 +59,7 @@ character-recognition/
     ├── package.json
     ├── requirements.txt
     ├── static/
-    │   ├── scripts.js
-    │   └── styles.css
+    │   └── scripts.js
     ├── templates/
     │   └── index.html
     └── training.py
@@ -72,7 +70,7 @@ character-recognition/
 - `app.py`: Start the webapp from here
 - `model/`: Directory containing the trained model.
 - `requirements.txt`: List of Python packages required for the project.
-- `static/`: Directory containing static files (JavaScript, CSS).
+- `static/`: Directory containing static files (JavaScript).
 - `templates/`: Directory containing HTML templates.
 - training.py
 
@@ -85,7 +83,7 @@ The model is trained using the EMNIST dataset. The training script (training.py)
 1. Downloads and extracts the EMNIST dataset.
 2. Preprocesses the data (reshaping, normalizing, etc.).
 3. Builds and trains a CNN model.
-4. Saves the trained model to [`model/model.h5`](command:_github.copilot.openSymbolFromReferences?%5B%22%22%2C%5B%7B%22uri%22%3A%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fworkspaces%2Fcodespaces-blank%2Fcharacter-recognition%2Fapp.py%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22pos%22%3A%7B%22line%22%3A11%2C%22character%22%3A20%7D%7D%5D%2C%22d0478508-a4c0-41fc-9ec4-da87a7b6659b%22%5D "Go to definition").
+4. Saves the trained model to `model/model.h5`.
 
 To train the model, run:
 ```sh
