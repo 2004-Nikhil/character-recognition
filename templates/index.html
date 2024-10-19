@@ -5,24 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Handwritten Character Recognition</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body onload="init()" class="bg-white-100">
-    <div class="bg-white py-8 sm:py-12">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <div class="mx-auto max-w-2xl lg:text-center">
-                <h2 class="text-base font-semibold leading-7 text-indigo-600">Machine Learning</h2>
-                <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Handwritten Character Recognition</p>
-            </div>
-        </div>
-    </div>
+<body onload="init()" class="bg-gray-900 text-gray-200">
+    <header class="bg-gray-800 text-white py-4">
+        <h1 class="text-center text-2xl font-bold">Handwritten Character Recognition</h1>
+    </header>
     <section id="content" class="py-8">
-        <div id="sketchpadapp" class="mx-auto max-w-7xl px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div id="sketchpadapp" class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="flex flex-col justify-center items-center">
-                    <canvas id="sketchpad" class="border border-gray-300" height="200" width="200"></canvas>
+                    <canvas id="sketchpad" class="border border-gray-700 rounded" height="300" width="300"></canvas>
                     <div class="mt-4">
-                        <button type="button" class="btn btn-dark" id="clear_button">Clear</button>
+                        <button type="button" class="bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-600 transition duration-300" id="clear_button">Clear</button>
                     </div>
                 </div>
                 <div class="flex flex-col justify-center items-center">
